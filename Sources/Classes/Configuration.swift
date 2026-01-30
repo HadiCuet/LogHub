@@ -33,7 +33,7 @@ public struct Configuration: Configurable {
     public init(logFormat: String = "$Dyyyy-MM-dd HH:mm:ss.SSS$d $T $C$L$c: $M",
                 sendingInterval: TimeInterval = 5,
                 logFolderName: String = "log-folder",
-                logFilename: String = "just-app.log",
+                logFilename: String = "loghub-app.log",
                 baseUrlForFileLogging: URL? = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first,
                 isFileExcludeFromBackup: Bool = true,
                 logFileAmount: Int = 1,

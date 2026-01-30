@@ -1,9 +1,9 @@
-//  JustFileDestination.swift
+//  LogHubFileDestination.swift
 
 import Foundation
 import SwiftyBeaver
 
-public class JustFileDestination: FileDestination {
+public class LogHubFileDestination: FileDestination {
 
     public override func send(_ level: SwiftyBeaver.Level, msg: String, thread: String, file: String, function: String, line: Int, context: Any? = nil) -> String? {
         guard level != .critical else {
@@ -15,4 +15,3 @@ public class JustFileDestination: FileDestination {
         return super.send(level, msg: innerMessage, thread: thread, file: file, function: function, line: line, context: context)
     }
 }
-

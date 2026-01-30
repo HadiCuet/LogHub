@@ -97,7 +97,7 @@ public final class Logger {
 
     private func setupFileDestination(with configuration: Configurable) {
         if isFileLoggingEnabled {
-            file = JustFileDestination()
+            file = LogHubFileDestination()
             file.format = configuration.fileLogFormat
             file.logFileAmount = configuration.logFileAmount
             if let baseUrl = configuration.baseUrlForFileLogging {

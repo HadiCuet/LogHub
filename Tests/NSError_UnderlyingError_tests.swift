@@ -13,7 +13,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "inner inner recovery suggestion"
             ] as [String: Any]
         
-        let innerInnerError: NSError = NSError(domain: "com.just-eat.test.inner.inner", code: 9999, userInfo: innerInnerUserInfoError)
+        let innerInnerError: NSError = NSError(domain: "com.loghub.test.inner.inner", code: 9999, userInfo: innerInnerUserInfoError)
         let underlyingReadableUserInfoError = [
             NSUnderlyingErrorKey: innerInnerError,
             NSLocalizedFailureReasonErrorKey: "inner error value",
@@ -21,7 +21,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "inner recovery suggestion"
             ] as [String: Any]
         
-        let innerError: NSError = NSError(domain: "com.just-eat.test.inner", code: 5678, userInfo: underlyingReadableUserInfoError)
+        let innerError: NSError = NSError(domain: "com.loghub.test.inner", code: 5678, userInfo: underlyingReadableUserInfoError)
         let readableUserInfos = [
             NSUnderlyingErrorKey: innerError,
             NSLocalizedFailureReasonErrorKey: "error value",
@@ -29,7 +29,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "recovery suggestion"
             ] as [String: Any]
         
-        let error = NSError(domain: "com.just-eat.test", code: 1234, userInfo: readableUserInfos)
+        let error = NSError(domain: "com.loghub.test", code: 1234, userInfo: readableUserInfos)
         let associatedErrors = error.errorChain()
         
         XCTAssertTrue(associatedErrors.contains(innerInnerError))
@@ -45,7 +45,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "inner inner recovery suggestion"
             ] as [String: Any]
         
-        let innerInnerError: NSError = NSError(domain: "com.just-eat.test.inner.inner", code: 9999, userInfo: innerInnerUserInfoError)
+        let innerInnerError: NSError = NSError(domain: "com.loghub.test.inner.inner", code: 9999, userInfo: innerInnerUserInfoError)
         let underlyingReadableUserInfoError = [
             NSUnderlyingErrorKey: innerInnerError,
             NSLocalizedFailureReasonErrorKey: "inner error value",
@@ -53,7 +53,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "inner recovery suggestion"
             ] as [String: Any]
         
-        let innerError: NSError = NSError(domain: "com.just-eat.test.inner", code: 5678, userInfo: underlyingReadableUserInfoError)
+        let innerError: NSError = NSError(domain: "com.loghub.test.inner", code: 5678, userInfo: underlyingReadableUserInfoError)
         let readableUserInfos = [
             NSUnderlyingErrorKey: innerError,
             NSLocalizedFailureReasonErrorKey: "error value",
@@ -61,7 +61,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "recovery suggestion"
             ] as [String: Any]
         
-        let error = NSError(domain: "com.just-eat.test", code: 1234, userInfo: readableUserInfos)
+        let error = NSError(domain: "com.loghub.test", code: 1234, userInfo: readableUserInfos)
         let associatedErrors = error.underlyingErrors()
         
         XCTAssertTrue(associatedErrors.contains(innerInnerError))
@@ -77,7 +77,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "inner inner recovery suggestion"
             ] as [String: Any]
         
-        let innerInnerError: NSError = NSError(domain: "com.just-eat.test.inner.inner", code: 9999, userInfo: innerInnerUserInfoError)
+        let innerInnerError: NSError = NSError(domain: "com.loghub.test.inner.inner", code: 9999, userInfo: innerInnerUserInfoError)
         let underlyingReadableUserInfoError = [
             NSUnderlyingErrorKey: innerInnerError,
             NSLocalizedFailureReasonErrorKey: "inner error value",
@@ -85,7 +85,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "inner recovery suggestion"
             ] as [String: Any]
         
-        let innerError: NSError = NSError(domain: "com.just-eat.test.inner", code: 5678, userInfo: underlyingReadableUserInfoError)
+        let innerError: NSError = NSError(domain: "com.loghub.test.inner", code: 5678, userInfo: underlyingReadableUserInfoError)
         let readableUserInfos = [
             NSUnderlyingErrorKey: innerError,
             NSLocalizedFailureReasonErrorKey: "error value",
@@ -93,7 +93,7 @@ class NSError_UnderlyingError_tests: XCTestCase {
             NSLocalizedRecoverySuggestionErrorKey: "recovery suggestion"
             ] as [String: Any]
         
-        let error = NSError(domain: "com.just-eat.test", code: 1234, userInfo: readableUserInfos)
+        let error = NSError(domain: "com.loghub.test", code: 1234, userInfo: readableUserInfos)
         let associatedErrors = error.disassociatedErrorChain()
         
         XCTAssertTrue(associatedErrors.count == 3)

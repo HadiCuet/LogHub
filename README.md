@@ -6,7 +6,7 @@ LogHub is a hub for all your log destinations on iOS: console, file, and remote 
 
 # Overview
 
-At Just Eat, logging and monitoring are fundamental parts of our job as engineers. Whether you are a back-end engineer or a front-end one, you'll often find yourself in the situation where understanding how your software behaves in production is important, if not critical. The ELK stack for real-time logging has gained great adoption over recent years, mainly in the back-end world where multiple microservices often interact with each other.
+With LogHub, logging and monitoring are fundamental parts of your workflow as an engineer. Whether you are a back-end engineer or a front-end one, you'll often find yourself in the situation where understanding how your software behaves in production is important, if not critical. The ELK stack for real-time logging has gained great adoption over recent years, mainly in the back-end world where multiple microservices often interact with each other.
 
 In the mobile world, the common approach to investigating issues is gathering logs from devices or trying to reproduce the issue by following a sequence of reported steps. Mobile developers are mostly familiar with tools such as [Google Analytics](https://analytics.google.com/analytics/web/) or [Fabric.io](https://fabric.io/) but they are _tracking_ systems, not fully fledged logging solutions.
 
@@ -71,7 +71,7 @@ Following is a code sample to configure and setup the Logger. It should be done 
 let logger = Logger.shared
 
 // file destination
-logger.logFilename = "justeat-demo.log"
+logger.logFilename = "loghub-demo.log"
 
 // logstash destination
 logger.logstashHost = "my.logstash.endpoint.com"
@@ -174,7 +174,7 @@ On file we store all the log info in the 'aggregated form'.
 2016-12-24 12:31:36.777  📝 DEBUG: {"metadata":{"file":"ViewController.swift","app_version":"1.0 (1)","version":"10.1","function":"debug()","device":"x86_64","line":"19"},"user_info":{"environment":"production","app":"my iOS App","log_type":"debug","tenant":"UK"},"message":"something to debug"}
 2016-12-24 12:31:37.368  ℹ️ INFO: {"metadata":{"file":"ViewController.swift","app_version":"1.0 (1)","version":"10.1","function":"info()","device":"x86_64","line":"23"},"user_info":{"environment":"production","app":"my iOS App","log_type":"info","tenant":"UK","some key":"some extra info"},"message":"a nice information"}
 2016-12-24 12:31:37.884  ⚠️ WARNING: {"metadata":{"file":"ViewController.swift","app_version":"1.0 (1)","version":"10.1","function":"warning()","device":"x86_64","line":"27"},"user_info":{"environment":"production","app":"my iOS App","log_type":"warning","tenant":"UK","some key":"some extra info"},"message":"oh no, that won’t be good"}
-2016-12-24 12:31:38.475  ☠️ ERROR: {"metadata":{"file":"ViewController.swift","app_version":"1.0 (1)","version":"10.1","function":"error()","device":"x86_64","line":"47"},"user_info":{"environment":"production","log_type":"error","some key":"some extra info","app":"my iOS App","tenant":"UK","NSLocalizedFailureReason":"error value"},"errors":[{"error_code":1234,"error_domain":"com.just-eat.test","NSLocalizedDescription":"description","NSLocalizedRecoverySuggestion":"recovery suggestion"}],"message":"ouch, an error did occur!"}
+2016-12-24 12:31:38.475  ☠️ ERROR: {"metadata":{"file":"ViewController.swift","app_version":"1.0 (1)","version":"10.1","function":"error()","device":"x86_64","line":"47"},"user_info":{"environment":"production","log_type":"error","some key":"some extra info","app":"my iOS App","tenant":"UK","NSLocalizedFailureReason":"error value"},"errors":[{"error_code":1234,"error_domain":"com.loghub.test","NSLocalizedDescription":"description","NSLocalizedRecoverySuggestion":"recovery suggestion"}],"message":"ouch, an error did occur!"}
 ```
 
 
@@ -198,7 +198,7 @@ Before sending a log to Logstash, the 'aggregated form' is flattened to a simple
   "function": "error()",
   "line": "47",
   "errors": [{
-    "error_domain": "com.just-eat.test",
+    "error_domain": "com.loghub.test",
     "error_code": "1234",
     "NSLocalizedDescription": "description",
     "NSLocalizedFailureReason": "error value"
@@ -330,4 +330,4 @@ LogHub aims to be an easy-to-use working solution with minimal setup. It covers 
 We hope this library will ease the process of setting up the logging for your team and help you find solutions to the issues you didn't know you had.
 
 
-- Just Eat iOS team
+- LogHub team

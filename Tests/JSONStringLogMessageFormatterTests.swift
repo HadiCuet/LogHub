@@ -11,7 +11,7 @@ class JSONStringLogMessageFormatterTests: XCTestCase {
             NSLocalizedDescriptionKey: "description",
             NSLocalizedRecoverySuggestionErrorKey: "recovery suggestion"
         ] as [String: Any]
-        let error = NSError(domain: "com.just-eat.error", code: 1234, userInfo: userInfo)
+        let error = NSError(domain: "com.loghub.error", code: 1234, userInfo: userInfo)
         
         let sut = JSONStringLogMessageFormatter(keys: FormatterKeys())
         let dict = sut.errorDictionary(for: error)
@@ -27,7 +27,7 @@ class JSONStringLogMessageFormatterTests: XCTestCase {
             NSLocalizedDescriptionKey: "description",
             NSLocalizedRecoverySuggestionErrorKey: "recovery suggestion"
         ] as [String: Any]
-        let error = NSError(domain: "com.just-eat.error", code: 1234, userInfo: userInfo)
+        let error = NSError(domain: "com.loghub.error", code: 1234, userInfo: userInfo)
         
         let sut = JSONStringLogMessageFormatter(keys: FormatterKeys())
         let dict = sut.errorDictionary(for: error)

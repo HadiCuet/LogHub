@@ -51,7 +51,7 @@ class MockLoggerFactory {
     
     init() {
         let decoder = JSONDecoder()
-        let configuration = Configuration(logFilename: "justeat-demo.log",
+        let configuration = Configuration(logFilename: "loghub-demo.log",
                                           logstashHost: "listener.logz.io",
                                           logstashPort: 8071,
                                           logstashTimeout: 5,

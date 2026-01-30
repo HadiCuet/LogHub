@@ -1,20 +1,16 @@
 //
 //  AppDelegate.swift
-//  LogHub
-//
-//  Created by Alberto De Bortoli on 12/06/2016.
-//  Copyright (c) 2017 Just Eat. All rights reserved.
+//  LogHub-Demo
 //
 
 import UIKit
 import LogHub
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     var window: UIWindow?
     private var sessionID = UUID().uuidString
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupLogger()
         return true
@@ -24,81 +20,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var pattern: String
         var minimumLogLevel: String
     }
-    
+
     struct ExceptionListResponse: Codable {
         var value: String
     }
-    
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         forceSendLogs(application)
     }
-    
+
     func applicationWillTerminate(_ application: UIApplication) {
         forceSendLogs(application)
     }
-    
+
     private var logger: Logger!
 
     func redactValues(message: String, loggerExeptionList: [ExceptionListResponse], matches: [NSTextCheckingResult]) -> String {
-        
+
         var redactedLogMessage = message
-        
+
         for match in matches.reversed() {
             let key = match.range(at: 1)
             let value = match.range(at: 2)
-            
+
             let keyRange = Range(key, in: redactedLogMessage)!
             let valueRange = Range(value, in: redactedLogMessage)!
-            
+
             for exception in loggerExeptionList {
                 if exception.value == redactedLogMessage[valueRange] {
                     return redactedLogMessage
                 }
             }
-            
+
             var redactedKey = redactedLogMessage[keyRange]
             let redactedKeyStartIndex = redactedKey.index(redactedKey.startIndex, offsetBy: 1)
             let redactedKeyEndIndex = redactedKey.index(redactedKey.endIndex, offsetBy: -1)
-            
+
             redactedKey.replaceSubrange(redactedKeyStartIndex..<redactedKeyEndIndex, with: "***")
-            
+
             var redactedValue = redactedLogMessage[valueRange]
             let valueReplacementStartIndex = redactedValue.startIndex
             let valueReplacementEndIndex = redactedValue.endIndex
-            
+
             redactedValue.replaceSubrange(valueReplacementStartIndex..<valueReplacementEndIndex, with: "*****")
-            
+
             redactedLogMessage.replaceSubrange(valueRange, with: redactedValue)
             redactedLogMessage.replaceSubrange(keyRange, with: redactedKey)
         }
         return redactedLogMessage
     }
-    
+
     private func forceSendLogs(_ application: UIApplication) {
-        
+
         var identifier: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
-        
+
         identifier = application.beginBackgroundTask(expirationHandler: {
             application.endBackgroundTask(identifier)
             identifier = UIBackgroundTaskIdentifier.invalid
         })
-        
+
         logger.forceSend { completionHandler in
             application.endBackgroundTask(identifier)
             identifier = UIBackgroundTaskIdentifier.invalid
         }
     }
-    
+
     private func setupLogger() {
         let decoder = JSONDecoder()
 
         // Logz.io: use HTTP (port 8071). Set logzioToken to your token.
         let configuration = Configuration(
-            logFilename: "justeat-demo.log",
+            logFilename: "LogHub-demo.log",
             logstashHost: "listener.logz.io",
             logstashPort: 8071,
             logstashTimeout: 5,
-            logLogstashSocketActivity: true
+            logLogstashSocketActivity: false,
+            logzioToken: "",
+            isConsoleLoggingEnabled: true
         )
 
         logger = Logger(
@@ -128,13 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             return sanitizedMessage
         }
-        
-        // logz.io support (set logzioToken in Configuration)
-        // logger.logzioToken = "<your-logz-io-token>"
-        
-        // untrusted (self-signed) logstash server support
-        //logger.allowUntrustedServer = <Bool>
+
+        LoggingController.shared.logger = logger
     }
-    
-    
 }
