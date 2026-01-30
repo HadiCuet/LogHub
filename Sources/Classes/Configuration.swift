@@ -22,7 +22,7 @@ public struct Configuration: Configurable {
     public var logstashTimeout: TimeInterval
     public var logLogstashSocketActivity: Bool
     public var logzioToken: String?
-    public var logstashOverHTTP: Bool
+    public var logstashLogType: String?
 
     // destinations
     public var isConsoleLoggingEnabled: Bool
@@ -44,7 +44,7 @@ public struct Configuration: Configurable {
                 logstashTimeout: TimeInterval = 20,
                 logLogstashSocketActivity: Bool = true,
                 logzioToken: String? = nil,
-                logstashOverHTTP: Bool = false,
+                logstashLogType: String? = nil,
                 isConsoleLoggingEnabled: Bool = false,
                 isFileLoggingEnabled: Bool = true,
                 isLogstashLoggingEnabled: Bool = true,
@@ -70,7 +70,7 @@ public struct Configuration: Configurable {
         self.logstashTimeout = logstashTimeout
         self.logLogstashSocketActivity = logLogstashSocketActivity
         self.logzioToken = logzioToken
-        self.logstashOverHTTP = logstashOverHTTP
+        self.logstashLogType = logstashLogType
 
         // destinations
         self.isConsoleLoggingEnabled = isConsoleLoggingEnabled

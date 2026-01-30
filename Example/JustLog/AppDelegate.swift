@@ -92,10 +92,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupLogger() {
         let decoder = JSONDecoder()
 
+        // Logz.io: use HTTP (port 8071). Set logzioToken to your token.
         let configuration = Configuration(
             logFilename: "justeat-demo.log",
             logstashHost: "listener.logz.io",
-            logstashPort: 5052,
+            logstashPort: 8071,
             logstashTimeout: 5,
             logLogstashSocketActivity: true
         )
@@ -128,8 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return sanitizedMessage
         }
         
-        // logz.io support
-        //logger.logzioToken = <logzioToken>
+        // logz.io support (set logzioToken in Configuration)
+        // logger.logzioToken = "<your-logz-io-token>"
         
         // untrusted (self-signed) logstash server support
         //logger.allowUntrustedServer = <Bool>

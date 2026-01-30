@@ -53,7 +53,7 @@ class MockLoggerFactory {
         let decoder = JSONDecoder()
         let configuration = Configuration(logFilename: "justeat-demo.log",
                                           logstashHost: "listener.logz.io",
-                                          logstashPort: 5052,
+                                          logstashPort: 8071,
                                           logstashTimeout: 5,
                                           logLogstashSocketActivity: true)
         

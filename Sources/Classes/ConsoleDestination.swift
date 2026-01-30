@@ -17,10 +17,11 @@ public class ConsoleDestination: BaseDestination {
 
     override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String, file: String,
                               function: String, line: Int, context: Any? = nil) -> String? {
-        
+
+        guard level != .fault else { return nil } // don't print fault logs in console
         let dict = msg.toDictionary()
         guard let innerMessage = dict?["message"] as? String else { return nil }
-        
+
         let formattedString = super.send(level, msg: innerMessage, thread: thread, file: file, function: function, line: line)
 
         if let str = formattedString {

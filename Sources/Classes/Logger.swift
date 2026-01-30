@@ -121,20 +121,13 @@ public final class Logger {
 
     private func setupLogstashDestination(with configuration: Configurable) {
         if isLogstashLoggingEnabled {
-            let sender: LogstashDestinationSending = {
-                if configuration.logstashOverHTTP {
-                    return LogstashDestinationHTTP(host: configuration.logstashHost,
-                                                   port: configuration.logstashPort,
-                                                   timeout: configuration.logstashTimeout,
-                                                   logActivity: false)
-                } else {
-                    return LogstashDestinationSocket(host: configuration.logstashHost,
-                                                     port: configuration.logstashPort,
-                                                     timeout: configuration.logstashTimeout,
-                                                     logActivity: configuration.logLogstashSocketActivity,
-                                                     allowUntrustedServer: configuration.allowUntrustedServer)
-                }
-            }()
+            let sender = LogstashDestinationHTTP(host: configuration.logstashHost,
+                                                port: configuration.logstashPort,
+                                                timeout: configuration.logstashTimeout,
+                                                logActivity: configuration.logLogstashSocketActivity,
+                                                allowUntrustedServer: configuration.allowUntrustedServer,
+                                                logzioToken: configuration.logzioToken,
+                                                logType: configuration.logstashLogType)
             logstash = LogstashDestination(sender: sender, logActivity: configuration.logLogstashSocketActivity)
             logstash.logzioToken = configuration.logzioToken
             internalLogger.addDestination(logstash)

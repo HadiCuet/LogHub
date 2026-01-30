@@ -7,7 +7,7 @@ protocol LogstashDestinationSending {
     typealias LogstashDestinationSendingCompletion = ([Int: Error]) -> Void
     typealias LogstashDestinationSendingTransform = ([String: Any]) -> Data
 
-    init(host: String, port: UInt16, timeout: TimeInterval, logActivity: Bool, allowUntrustedServer: Bool)
+    init(host: String, port: UInt16, timeout: TimeInterval, logActivity: Bool, allowUntrustedServer: Bool, logzioToken: String?, logType: String?)
 
     func cancel()
 

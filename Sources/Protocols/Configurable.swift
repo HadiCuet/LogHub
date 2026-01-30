@@ -23,7 +23,7 @@ public protocol Configurable {
     var logstashTimeout: TimeInterval { get set }
     var logLogstashSocketActivity: Bool { get set }
     var logzioToken: String? { get set }
-    var logstashOverHTTP: Bool { get set }
+    var logstashLogType: String? { get set }
 
     // destinations
     var isConsoleLoggingEnabled: Bool { get set }

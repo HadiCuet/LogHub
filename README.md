@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/cocoapods/l/JustLog.svg?style=flat)](http://cocoapods.org/pods/JustLog)
 [![Platform](https://img.shields.io/cocoapods/p/JustLog.svg?style=flat)](http://cocoapods.org/pods/JustLog)
 
-JustLog takes logging on iOS to the next level. It supports console, file and remote Logstash logging via TCP socket with no effort. Support for logz.io available.
+JustLog takes logging on iOS to the next level. It supports console, file and remote Logstash logging via HTTP with no effort. Support for logz.io available.
 
 - [Just Eat Tech blog](https://tech.just-eat.com/2017/01/18/a-better-local-and-remote-logging-on-ios-with-justlog/)
 
@@ -21,7 +21,7 @@ In the mobile world, the common approach to investigating issues is gathering lo
 
 We believe tracking is different in nature from logging and that mobile apps should take advantage of ELK too in order to take their monitoring and analysis to another level. Remote logging the right set of information could provide valuable information that would be difficult to gather otherwise, unveil unexpected behaviours and bugs, and even if the data was properly anonymized, identify the sequences of actions of singular users.
 
-JustLog takes logging on iOS to the next level. It supports console, file and remote Logstash logging via TCP socket out of the box. You can also setup JustLog to use [logz.io](http://logz.io) with no effort. JustLog relies on [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver), exposes a simple swifty API but it also plays just fine with Objective-C.
+JustLog takes logging on iOS to the next level. It supports console, file and remote Logstash logging via HTTP out of the box. You can also setup JustLog to use [logz.io](http://logz.io) with no effort. JustLog relies on [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver), exposes a simple swifty API but it also plays just fine with Objective-C.
 
 JustLog sets the focus on remote logging, but fully covers the basic needs of local console and file logging.
 
@@ -275,14 +275,20 @@ private func forceSendLogs(_ application: UIApplication) {
 
 JustLog supports sending logs to [logz.io](http://logz.io).
 
-At the time of writing, logz.io uses the following host and port (please refer to the official [documentation](https://app.logz.io/#/dashboard/data-sources/TLSSSL-TCP)):
+**Important:** JustLog sends logs over HTTP only. For Logz.io use host `listener.logz.io` and port 8071.
+
+**Recommended setup (HTTP, port 8071):** Remote logging uses HTTP only. Configure with your Logz.io token:
 
 ```swift
-logger.logstashHost = "listener.logz.io"
-logger.logstashPort = 5052
+let configuration = Configuration(
+    logstashHost: "listener.logz.io",
+    logstashPort: 8071,
+    logzioToken: "<your-logz-io-token>",
+    logstashLogType: "http-bulk"  // optional; default is "http-bulk". See built-in log types: https://docs.logz.io/docs/user-guide/data-hub/log-parsing/default-parsing/#built-in-log-types
+)
 ```
 
-When configuring the Logger (before calling `setup()`), simply set the token like so:
+Set `logzioToken` on the logger when using Logz.io:
 
 ```swift
 logger.logzioToken = <logzio_token>
