@@ -9,7 +9,7 @@ public final class Logger {
     private var _sanitize: SanitizeClosureType = { message, _ in
         message
     }
-    private let sanitizePropertyQueue = DispatchQueue(label: "com.hadicuet.justlog.sanitizePropertyQueue",
+    private let sanitizePropertyQueue = DispatchQueue(label: "com.hadicuet.loghub.sanitizePropertyQueue",
                                                       qos: .default, attributes: .concurrent)
     public var sanitize: SanitizeClosureType {
         get {
@@ -89,7 +89,7 @@ public final class Logger {
 
     private func setupConsoleDestination(with configuration: Configurable) {
         if isConsoleLoggingEnabled {
-            console = JustLog.ConsoleDestination()
+            console = LogHub.ConsoleDestination()
             console.format = configuration.logFormat
             internalLogger.addDestination(console)
         }

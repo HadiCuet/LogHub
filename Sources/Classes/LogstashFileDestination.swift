@@ -1,6 +1,6 @@
 //
 //  LogstashFileDestination.swift
-//  JustLog
+//  LogHub
 //
 //  Created by Abdullah Al Hadi on 1/5/25.
 //

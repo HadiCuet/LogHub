@@ -2,7 +2,7 @@
 
 import Foundation
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 class Data_RepresentationTests: XCTestCase {
 

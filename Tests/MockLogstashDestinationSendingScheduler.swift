@@ -2,7 +2,7 @@
 
 import Foundation
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 struct MockLogstashDestinationSendingScheduler: LogstashDestinationSendingScheduling {
     var networkOperationCountExpectation: XCTestExpectation?

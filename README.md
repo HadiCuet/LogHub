@@ -1,17 +1,8 @@
-![JustLog Banner](./img/just_log_banner.png)
+![LogHub Banner](./img/loghub_banner.png)
 
-### Warning: This library is not supported by Just Eat Takeaway anymore and therefore considered deprecated. The repository has been archived.
+# LogHub
 
-# JustLog
-
-[![Build Status](https://travis-ci.org/justeat/JustLog.svg?branch=master)](https://travis-ci.org/justeat/JustLog)
-[![Version](https://img.shields.io/cocoapods/v/JustLog.svg?style=flat)](http://cocoapods.org/pods/JustLog)
-[![License](https://img.shields.io/cocoapods/l/JustLog.svg?style=flat)](http://cocoapods.org/pods/JustLog)
-[![Platform](https://img.shields.io/cocoapods/p/JustLog.svg?style=flat)](http://cocoapods.org/pods/JustLog)
-
-JustLog takes logging on iOS to the next level. It supports console, file and remote Logstash logging via HTTP with no effort. Support for logz.io available.
-
-- [Just Eat Tech blog](https://tech.just-eat.com/2017/01/18/a-better-local-and-remote-logging-on-ios-with-justlog/)
+LogHub is a hub for all your log destinations on iOS: console, file, and remote (Logstash / Logz.io) over HTTP. Support for [logz.io](http://logz.io) included.
 
 # Overview
 
@@ -21,9 +12,9 @@ In the mobile world, the common approach to investigating issues is gathering lo
 
 We believe tracking is different in nature from logging and that mobile apps should take advantage of ELK too in order to take their monitoring and analysis to another level. Remote logging the right set of information could provide valuable information that would be difficult to gather otherwise, unveil unexpected behaviours and bugs, and even if the data was properly anonymized, identify the sequences of actions of singular users.
 
-JustLog takes logging on iOS to the next level. It supports console, file and remote Logstash logging via HTTP out of the box. You can also setup JustLog to use [logz.io](http://logz.io) with no effort. JustLog relies on [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver), exposes a simple swifty API but it also plays just fine with Objective-C.
+LogHub takes logging on iOS to the next level. It supports console, file and remote Logstash logging via HTTP out of the box. You can also set up LogHub to use [logz.io](http://logz.io) with no effort. LogHub relies on [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver), exposes a simple Swift API and works with Objective-C.
 
-JustLog sets the focus on remote logging, but fully covers the basic needs of local console and file logging.
+LogHub is a hub for all log destinations: remote logging plus local console and file logging.
 
 # Installation
 
@@ -32,10 +23,10 @@ JustLog sets the focus on remote logging, but fully covers the basic needs of lo
 Add the following to your podfile:
 
 ```ruby
-pod "JustLog"
+pod "LogHub"
 ```
 
-You can find the latest version on [cocoapods.org](http://cocoapods.org/pods/JustLog)
+You can find the latest version on [cocoapods.org](http://cocoapods.org/pods/LogHub) when published.
 
 ## Swift Package Manager
 
@@ -47,10 +38,10 @@ Import it into your files like so:
 
 ```swift
 // swift
-import JustLog
+import LogHub
 
 // Objective-C
-@import JustLog;
+@import LogHub;
 ```
 
 This logging system strongly relies on [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver).
@@ -68,7 +59,7 @@ A log can be of one of 5 different types, to be used according to the specific n
 - ⚠️ **warning**: Anything that can potentially cause application oddities but an automatic recovery is possible (such as retrying an operation, missing data, etc.)
 - ☠️ **error**: Any error which is fatal to the operation, but not the service or application (can't open a required file, missing data, etc.). These errors will force user intervention. These are usually reserved for failed API calls, missing services, etc.
 
-When using JustLog, the only object to interact with is the shared instance of the `Logger` class, which supports 3 destinations:
+When using LogHub, the only object to interact with is the shared instance of the `Logger` class, which supports 3 destinations:
 
 - sync writing to Console (custom destination)
 - sync writing to File (custom destination)
@@ -98,7 +89,7 @@ logger.setup()
 
 The `defaultUserInfo` dictionary contains a set of basic information to add to every log.
 
-The Logger class exposes 5 functions for the different types of logs. The only required parameter is the message, optional error and userInfo can be provided. Here are some examples of sending logs to JustLog:
+The Logger class exposes 5 functions for the different types of logs. The only required parameter is the message; optional error and userInfo can be provided. Here are some examples of sending logs with LogHub:
 
 ```swift
 Logger.shared.verbose("not so important")
@@ -236,7 +227,7 @@ When the `logLogstashSocketActivity` is set to true, socket activity is printed 
 
 ![Socket Activity](./img/socket_activity.png)
 
-This destination is the only asynchronous destination that comes with JustLog. This means that logs to Logstash are batched and sent at some point in future when the timer fires. The `logstashTimeout` property can be set to the number of seconds for the dispatch.
+This destination is the only asynchronous destination that comes with LogHub. This means that logs to Logstash are batched and sent at some point in future when the timer fires. The `logstashTimeout` property can be set to the number of seconds for the dispatch.
 In some cases, it might be important to dispatch the logs immediately after an event occurs like so:
 
 ```swift
@@ -273,9 +264,9 @@ private func forceSendLogs(_ application: UIApplication) {
 
 ## Sending logs to logz.io
 
-JustLog supports sending logs to [logz.io](http://logz.io).
+LogHub supports sending logs to [logz.io](http://logz.io).
 
-**Important:** JustLog sends logs over HTTP only. For Logz.io use host `listener.logz.io` and port 8071.
+**Important:** LogHub sends logs over HTTP only. For Logz.io use host `listener.logz.io` and port 8071.
 
 **Recommended setup (HTTP, port 8071):** Remote logging uses HTTP only. Configure with your Logz.io token:
 
@@ -296,7 +287,7 @@ logger.logzioToken = <logzio_token>
 
 ## Custom
 
-From 3.2.0 onward JustLog supports a custom destination that can be defined by you. To implement a custom logger, all you need to do is
+From 3.2.0 onward LogHub supports a custom destination that can be defined by you. To implement a custom logger, all you need to do is
 provide a type that conforms to the `CustomDestinationSender` protocol to the new overloaded `setupWithCustomLogSender()` method.
 
 Don't forget to set the `enableCustomLogging` property to `true` before calling `setupWithCustomLogSender`.
@@ -317,7 +308,7 @@ logger.setupWithCustomLogSender(customSender)
 
 ## Log Sanitization 
 
-JustLog supports the implementation of a sanitize method that can be set within the client. This method accepts two placeholder variables:
+LogHub supports the implementation of a sanitize method that can be set within the client. This method accepts two placeholder variables:
 
 - Message:  This variable concerns the log message that you wish to sanitize.
 - Log Type: This variable concerns the log level applied to the given log message.
@@ -334,7 +325,7 @@ This closure method is set up and called within Logger.Swift. If this method not
 
 # Conclusion
 
-JustLog aims to be an easy-to-use working solution with minimal setup. It covers the most basic logging needs (console and file logging) via the great foundations given by SwiftBeaver, but also provides an advanced remote logging solution for Logstash (which is usually paired with Elasticsearch and Kibana in an [ELK](https://www.elastic.co/webinars/introduction-elk-stack) stack). JustLog integrates with [logz.io](http://logz.io), one of the most widely used ELK SaaS, placing itself as the only solution in the market (at the time of writing) to leverage such stack on iOS.
+LogHub aims to be an easy-to-use working solution with minimal setup. It covers the most basic logging needs (console and file logging) via the great foundations given by SwiftyBeaver, but also provides an advanced remote logging solution for Logstash (which is usually paired with Elasticsearch and Kibana in an [ELK](https://www.elastic.co/webinars/introduction-elk-stack) stack). LogHub integrates with [logz.io](http://logz.io), one of the most widely used ELK SaaS solutions for iOS.
 
 We hope this library will ease the process of setting up the logging for your team and help you find solutions to the issues you didn't know you had.
 

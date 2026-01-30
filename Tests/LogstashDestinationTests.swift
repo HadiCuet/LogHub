@@ -1,7 +1,7 @@
 //  LogstashDestinationTests.swift
 
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 class LogstashDestinationTests: XCTestCase {
 

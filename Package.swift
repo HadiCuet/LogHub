@@ -6,7 +6,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "JustLog",
+    name: "LogHub",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v15),
@@ -16,8 +16,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "JustLog",
-            targets: ["JustLog"]
+            name: "LogHub",
+            targets: ["LogHub"]
         ),
     ],
     dependencies: [
@@ -28,16 +28,16 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "JustLog",
+            name: "LogHub",
             dependencies: [
                 .product(name: "SwiftyBeaver", package: "SwiftyBeaver"),
             ],
             path: "Sources"
         ),
         .testTarget(
-            name: "JustLogTests",
+            name: "LogHubTests",
             dependencies: [
-                .byName(name: "JustLog"),
+                .byName(name: "LogHub"),
             ],
             path: "Tests"
         ),

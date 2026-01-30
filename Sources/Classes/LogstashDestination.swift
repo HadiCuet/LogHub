@@ -22,7 +22,7 @@ public class LogstashDestination: BaseDestination {
     public var logzioToken: String?
 
     private let operationQueue: OperationQueue
-    private let dispatchQueue = DispatchQueue(label: "com.justlog.LogstashDestination.dispatchQueue", qos: .utility)
+    private let dispatchQueue = DispatchQueue(label: "com.loghub.LogstashDestination.dispatchQueue", qos: .utility)
     /// Private
     private let logzioTokenKey = "token"
 
@@ -39,7 +39,7 @@ public class LogstashDestination: BaseDestination {
         self.operationQueue = OperationQueue()
         self.operationQueue.underlyingQueue = dispatchQueue
         self.operationQueue.maxConcurrentOperationCount = 1
-        self.operationQueue.name = "com.justlog.LogstashDestination.operationQueue"
+        self.operationQueue.name = "com.loghub.LogstashDestination.operationQueue"
         self.sender = sender
         self.logstashFileDestination = LogstashFileDestination()
         super.init()

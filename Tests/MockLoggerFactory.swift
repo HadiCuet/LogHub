@@ -1,7 +1,7 @@
 //  MockLoggerFactory.swift
 
 import Foundation
-@testable import JustLog
+@testable import LogHub
 
 class MockLoggerFactory {
     
@@ -62,7 +62,7 @@ class MockLoggerFactory {
                                  deviceTypeKey: "ios_device",
                                  iosVersionKey: "ios_version")
         
-        let defaultLogMetadata = ["application": "JustLog iOS Demo",
+        let defaultLogMetadata = ["application": "LogHub iOS Demo",
                                   "environment": "development",
                                   "session": "sessionID"]
         

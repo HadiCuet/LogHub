@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FC4B3BC2B442540003E67C4 /* JustLog in Frameworks */ = {isa = PBXBuildFile; productRef = 4FC4B3BB2B442540003E67C4 /* JustLog */; };
+		4FC4B3BC2B442540003E67C4 /* LogHub in Frameworks */ = {isa = PBXBuildFile; productRef = 4FC4B3BB2B442540003E67C4 /* LogHub */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,7 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC4B3BC2B442540003E67C4 /* JustLog in Frameworks */,
+				4FC4B3BC2B442540003E67C4 /* LogHub in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,9 +92,9 @@
 			);
 			name = JustLog_Example;
 			packageProductDependencies = (
-				4FC4B3BB2B442540003E67C4 /* JustLog */,
+				4FC4B3BB2B442540003E67C4 /* LogHub */,
 			);
-			productName = JustLog;
+			productName = LogHub;
 			productReference = 607FACD01AFB9204008FA782 /* DemoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -190,7 +190,7 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = JustLog/Info.plist;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.justeattakeaway.demo.JustLog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hadicuet.demo.LogHub;
 				PRODUCT_NAME = DemoApp;
 			};
 			name = Debug;
@@ -204,7 +204,7 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = JustLog/Info.plist;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.justeattakeaway.demo.JustLog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hadicuet.demo.LogHub;
 				PRODUCT_NAME = DemoApp;
 			};
 			name = Release;
@@ -352,9 +352,9 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4FC4B3BB2B442540003E67C4 /* JustLog */ = {
+		4FC4B3BB2B442540003E67C4 /* LogHub */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = JustLog;
+			productName = LogHub;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

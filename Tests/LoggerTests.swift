@@ -1,7 +1,7 @@
 //  LoggerTests.swift
 
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 class LoggerTests: XCTestCase {
     var sut: Logger!

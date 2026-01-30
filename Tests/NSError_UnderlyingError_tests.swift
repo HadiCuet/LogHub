@@ -1,7 +1,7 @@
 //  NSError_UnderlyingError_tests.swift
 
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 class NSError_UnderlyingError_tests: XCTestCase {
 

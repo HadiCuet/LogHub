@@ -1,7 +1,7 @@
 //  NSError_ReadabilityTests.swift
 
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 class NSError_Flattening: XCTestCase {
     

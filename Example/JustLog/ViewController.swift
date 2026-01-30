@@ -1,13 +1,13 @@
 //
 //  ViewController.swift
-//  JustLog
+//  LogHub
 //
 //  Created by Alberto De Bortoli on 12/06/2016.
 //  Copyright (c) 2017 Just Eat. All rights reserved.
 //
 
 import UIKit
-import JustLog
+import LogHub
 
 class ViewController: UIViewController {
 

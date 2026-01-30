@@ -1,7 +1,7 @@
 //  CustomDestinationTests.swift
 
 import XCTest
-@testable import JustLog
+@testable import LogHub
 
 class MockCustomDestinationSender: CustomDestinationSender {
     let expectation: XCTestExpectation
